@@ -1,0 +1,15 @@
+@charset "utf-8";
+/* CSS Document */
+/*=========================================初始化======================================*/
+body,div,ul,ol,li,table,tr,td,th,span,u,i,b,strong,form,input,dl,img,sub,sup,p,a,h1,h2,h3,h4,h5,h6,pre,button,textarea,blockquote,fieldset,legend{margin:0px; padding:0px;/*vertical-align: baseline*/}
+img{border:0px; vertical-align:middle}
+input{ vertical-align:middle}
+ul,ol,li{ list-style:none}
+.clearfix:after{ clear:both;content:"";display:block;height:0;}
+a{ color:#333; text-decoration:none}
+a:link{}
+a:active{}
+a:hover{ color:#333; text-decoration:underline}
+a:visited{}
+body{font:12px/1.5 Tahoma,Helvetica,'SimSun',sans-serif; line-align:1.5px/20px;}
+.wordwrap{word-break:break-all;word-wrap:break-word}

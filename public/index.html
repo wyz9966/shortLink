@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>yz-短网址</title>
+    <script type="text/javascript" src="./static/js/jquery-1.8.3.min.js"></script>
+    <link rel="stylesheet" href="./static/css/css-1.min.css">
+    <style type="text/css">
+        input{ padding: 5px 10px;}
+        #ul-form li{ margin-top: 10px;}
+        #cp-js{ padding: 10px 17px;cursor: pointer;}
+    </style>
+</head>
+<body>
+    <div style="text-align: center;margin-top: 70px;">
+        <ul id="ul-form">
+            <li><span style="margin-right: 10px;"><input type="text" name="link" style="width: 280px; height: 30px;" /></span><label><a href="javascript:void(0);" name="create">生成短链接</a></label></li>
+            <li style="display: none;"><span name="shorlink" style="margin-right: 10px;"><input type="text" style="width: 280px; height: 30px;" /></span><label><button id="cp-js" class="modal-body">复制</button></label></li>
+        </ul>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var shorLink = '';
+        $('#ul-form a[name=create]').click(function () {
+            var link = $('#ul-form input[name=link]').val();
+            if(!link){
+                alert('请填写链接');
+                return;
+            }
+            $.ajax({
+                url: 'link.php',
+                dataType: 'json',
+                type: 'post',
+                data: {act:'create',link:link},
+                success: function (c) {
+                    // alert(c.msg);
+                    if (c.code === 200)
+                    {
+                        shorLink = c.data.short_link;
+                        $('#ul-form li:last').show().children('span[name=shorlink]').children('input').val(shorLink);
+
+                    } else {
+                        alert(c.msg);
+                    }
+                },
+                error: function () {
+                    alert('请求出错');
+                }
+            });
+        });
+
+        $('#cp-js').click(function () {
+            $('#ul-form li:last').children('span[name=shorlink]').children('input').select();
+            document.execCommand("copy",false,null);
+        });
+
+    });
+
+
+</script>
