@@ -93,7 +93,7 @@ function create()
 
 function getHttpLink($url)
 {
-	if (!preg_match("/^(http|ftp):/", $url)) {
+	if (!preg_match("/^(http|https|ftp):/", $url)) {
 		$url = 'http://'.$url;
 	}
 	return $url;
@@ -113,7 +113,7 @@ function shortUrl($input)
 	$hexLen = strlen($hex);
 	$subHexLen = $hexLen / 8;
 	$output = array();
-echo '<pre>';
+
 	for ($i = 0; $i < $subHexLen; $i++) {
 		//把加密字符按照8位一组16进制与0x3FFFFFFF(30位1)进行位与运算
 		$subHex = substr ($hex, $i * 8, 8);
